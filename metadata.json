@@ -1,0 +1,6 @@
+{
+  "name": "SurakshaSathi",
+  "description": "AI-Powered Emergency Resource Intelligence, Allocation & Response System with comprehensive emergency UI design guide",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
