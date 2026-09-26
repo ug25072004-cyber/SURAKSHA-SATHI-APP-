@@ -31,7 +31,7 @@ object GeminiApiClient {
         conversationHistory: List<Pair<String, String>> = emptyList()
     ): Result<String> = withContext(Dispatchers.IO) {
         val apiKey = BuildConfig.GEMINI_API_KEY
-        if (apiKey.isBlank() || apiKey == "MY_GEMINI_API_KEY") {
+        if (apiKey.isBlank() || apiKey == "MY_GEMINI_API_KEY" || apiKey == "DEFAULT_GEMINI_API_KEY") {
             return@withContext Result.failure(Exception("API_KEY_NOT_CONFIGURED"))
         }
 
