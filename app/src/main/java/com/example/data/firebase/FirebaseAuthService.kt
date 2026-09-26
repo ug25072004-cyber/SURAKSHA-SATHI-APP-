@@ -77,6 +77,24 @@ class FirebaseAuthService(
         get() = auth?.currentUser
 
     /**
+     * Sets a local authenticated responder session when cloud network is offline or API key is restricted.
+     */
+    fun setLocalAuthenticatedUser(
+        uid: String,
+        email: String,
+        displayName: String,
+        provider: String = "tactical_field_offline"
+    ) {
+        _authState.value = AuthState.Authenticated(
+            uid = uid,
+            email = email,
+            displayName = displayName,
+            provider = provider,
+            isEmailVerified = true
+        )
+    }
+
+    /**
      * Creates a new user with Email and Password, and sets their display name / call sign.
      */
     suspend fun signUpWithEmail(

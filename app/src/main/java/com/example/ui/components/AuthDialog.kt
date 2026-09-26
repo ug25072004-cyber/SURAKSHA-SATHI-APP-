@@ -577,6 +577,37 @@ fun AuthDialog(
 
                     Spacer(modifier = Modifier.height(6.dp))
 
+                    // Tactical Field Responder Quick Access
+                    Button(
+                        onClick = {
+                            val callSign = if (displayName.isNotBlank()) displayName else if (email.isNotBlank()) email.substringBefore('@').replaceFirstChar { it.uppercase() } else "Field Commander"
+                            val userEmail = if (email.isNotBlank()) email else "commander@surakshasathi.org"
+                            viewModel.signInAsLocalFieldResponder(callSign, userEmail)
+                        },
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .height(44.dp)
+                            .testTag("btn_auth_tactical_offline"),
+                        colors = ButtonDefaults.buttonColors(containerColor = emergencyColors.amberWarning.copy(alpha = 0.85f)),
+                        shape = RoundedCornerShape(8.dp)
+                    ) {
+                        Icon(
+                            imageVector = Icons.Filled.Security,
+                            contentDescription = null,
+                            tint = Color.Black,
+                            modifier = Modifier.size(16.dp)
+                        )
+                        Spacer(modifier = Modifier.width(8.dp))
+                        Text(
+                            text = "⚡ Instant Access: Tactical Field Responder",
+                            fontWeight = FontWeight.Bold,
+                            color = Color.Black,
+                            fontSize = 13.sp
+                        )
+                    }
+
+                    Spacer(modifier = Modifier.height(6.dp))
+
                     // Offline Guest Responder Option
                     TextButton(
                         onClick = onDismiss,
@@ -585,7 +616,7 @@ fun AuthDialog(
                             .testTag("btn_auth_continue_guest")
                     ) {
                         Text(
-                            text = "Continue in Offline / Field Guest Mode",
+                            text = "Close / Continue in Guest Mode",
                             style = MaterialTheme.typography.bodySmall,
                             color = emergencyColors.textSecondary
                         )
