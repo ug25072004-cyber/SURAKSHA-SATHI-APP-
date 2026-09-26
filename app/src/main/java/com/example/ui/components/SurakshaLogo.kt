@@ -57,51 +57,22 @@ fun SurakshaLogo(
         modifier = modifier,
         verticalAlignment = Alignment.CenterVertically
     ) {
-        // Logo Emblem Container
+        // Official Logo Emblem Container
         Box(
             modifier = Modifier
                 .size(size)
-                .clip(RoundedCornerShape(16.dp))
-                .background(
-                    Brush.verticalGradient(
-                        colors = listOf(
-                            Color(0xFF0D47A1),
-                            Color(0xFF00838F)
-                        )
-                    )
-                ),
+                .clip(RoundedCornerShape(12.dp))
+                .background(Color.White),
             contentAlignment = Alignment.Center
         ) {
-            // Internal layered emblem representation
-            Icon(
-                imageVector = Icons.Filled.Shield,
-                contentDescription = "SurakshaSathi Shield",
-                tint = Color.White.copy(alpha = 0.9f),
-                modifier = Modifier.size(size * 0.75f)
-            )
-
-            // Inner location pin with sunrise energy
-            Box(
+            Image(
+                painter = painterResource(id = R.drawable.suraksha_sathi_logo),
+                contentDescription = "SurakshaSathi Official Emblem",
                 modifier = Modifier
-                    .size(size * 0.42f)
-                    .clip(CircleShape)
-                    .background(
-                        Brush.radialGradient(
-                            colors = listOf(
-                                Color(0xFFFF9800),
-                                Color(0xFFE65100)
-                            )
-                        )
-                    ),
-                contentAlignment = Alignment.Center
-            ) {
-                Icon(
-                    imageVector = Icons.Filled.LocationOn,
-                    contentDescription = null,
-                    tint = Color.White,
-                    modifier = Modifier.size(size * 0.28f)
-                )
-            }
+                    .size(size)
+                    .clip(RoundedCornerShape(12.dp)),
+                contentScale = androidx.compose.ui.layout.ContentScale.Fit
+            )
         }
 
         if (showWordmark) {
