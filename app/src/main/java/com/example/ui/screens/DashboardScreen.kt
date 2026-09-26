@@ -53,7 +53,6 @@ import androidx.compose.ui.unit.sp
 import com.example.data.model.UserRole
 import com.example.ui.components.DynamicReallocationBanner
 import com.example.ui.components.EmergencyActionButton
-import com.example.ui.components.SurakshaBrandBannerCard
 import com.example.ui.components.SurakshaLogo
 import com.example.ui.components.TriageZoneCard
 import com.example.ui.theme.LocalEmergencyColors
@@ -128,13 +127,6 @@ fun DashboardScreen(
                     }
                 }
             }
-        }
-
-        // Official SurakshaSathi Brand Hero Banner
-        item {
-            SurakshaBrandBannerCard(
-                height = 115.dp
-            )
         }
 
         // Active Disaster Headline Banner
