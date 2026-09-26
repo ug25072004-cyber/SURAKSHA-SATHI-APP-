@@ -52,7 +52,7 @@ fun SurakshaLogo(
                 .shadow(elevation = 2.dp, shape = RoundedCornerShape(10.dp)),
             shape = RoundedCornerShape(10.dp),
             color = Color.White,
-            border = BorderStroke(1.dp, Color(0xFF00B0FF).copy(alpha = 0.35f))
+            border = BorderStroke(1.dp, Color(0xFF0D3B66).copy(alpha = 0.2f))
         ) {
             Image(
                 painter = painterResource(id = R.drawable.app_logo_emblem),
@@ -72,14 +72,14 @@ fun SurakshaLogo(
                         text = "Suraksha",
                         fontWeight = FontWeight.Black,
                         fontSize = (size.value * 0.38f).coerceAtLeast(14f).sp,
-                        color = Color(0xFF00B0FF),
+                        color = Color(0xFF0D3B66),
                         letterSpacing = (-0.5).sp
                     )
                     Text(
                         text = "Sathi",
                         fontWeight = FontWeight.Black,
                         fontSize = (size.value * 0.38f).coerceAtLeast(14f).sp,
-                        color = Color(0xFF00E676),
+                        color = Color(0xFF00A86B),
                         letterSpacing = (-0.5).sp
                     )
                 }
