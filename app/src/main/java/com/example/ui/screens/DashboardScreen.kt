@@ -53,6 +53,7 @@ import androidx.compose.ui.unit.sp
 import com.example.data.model.UserRole
 import com.example.ui.components.DynamicReallocationBanner
 import com.example.ui.components.EmergencyActionButton
+import com.example.ui.components.SurakshaBrandBannerCard
 import com.example.ui.components.SurakshaLogo
 import com.example.ui.components.TriageZoneCard
 import com.example.ui.theme.LocalEmergencyColors
@@ -78,44 +79,62 @@ fun DashboardScreen(
         contentPadding = PaddingValues(16.dp),
         verticalArrangement = Arrangement.spacedBy(14.dp)
     ) {
-        // App Header & Role Indicator
+        // App Header & Role Indicator with Official Brand Logo
         item {
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.SpaceBetween,
-                verticalAlignment = Alignment.CenterVertically
+            Card(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .testTag("dashboard_brand_header"),
+                colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface),
+                border = BorderStroke(1.dp, emergencyColors.blueLight.copy(alpha = 0.25f)),
+                shape = RoundedCornerShape(16.dp)
             ) {
-                SurakshaLogo(
-                    size = 46.dp,
-                    showWordmark = true,
-                    tagline = "Emergency Command Center"
-                )
-
-                // Role Switcher Pill
-                Box(
+                Row(
                     modifier = Modifier
-                        .clip(RoundedCornerShape(20.dp))
-                        .background(emergencyColors.bluePrimary.copy(alpha = 0.2f))
-                        .clickable {
-                            val nextRole = when (uiState.currentRole) {
-                                UserRole.DISASTER_COMMANDER -> UserRole.RESPONSE_TEAM
-                                UserRole.RESPONSE_TEAM -> UserRole.HOSPITAL_LEAD
-                                UserRole.HOSPITAL_LEAD -> UserRole.CITIZEN_VOLUNTEER
-                                UserRole.CITIZEN_VOLUNTEER -> UserRole.DISASTER_COMMANDER
-                            }
-                            viewModel.setRole(nextRole)
-                        }
-                        .padding(horizontal = 10.dp, vertical = 6.dp)
-                        .testTag("role_switcher_pill")
+                        .fillMaxWidth()
+                        .padding(horizontal = 14.dp, vertical = 12.dp),
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                    verticalAlignment = Alignment.CenterVertically
                 ) {
-                    Text(
-                        text = "Role: ${uiState.currentRole.title}",
-                        style = MaterialTheme.typography.labelSmall,
-                        fontWeight = FontWeight.Bold,
-                        color = emergencyColors.blueLight
+                    SurakshaLogo(
+                        size = 50.dp,
+                        showWordmark = true,
+                        tagline = "Emergency Command Center"
                     )
+
+                    // Role Switcher Pill
+                    Box(
+                        modifier = Modifier
+                            .clip(RoundedCornerShape(20.dp))
+                            .background(emergencyColors.bluePrimary.copy(alpha = 0.2f))
+                            .clickable {
+                                val nextRole = when (uiState.currentRole) {
+                                    UserRole.DISASTER_COMMANDER -> UserRole.RESPONSE_TEAM
+                                    UserRole.RESPONSE_TEAM -> UserRole.HOSPITAL_LEAD
+                                    UserRole.HOSPITAL_LEAD -> UserRole.CITIZEN_VOLUNTEER
+                                    UserRole.CITIZEN_VOLUNTEER -> UserRole.DISASTER_COMMANDER
+                                }
+                                viewModel.setRole(nextRole)
+                            }
+                            .padding(horizontal = 10.dp, vertical = 6.dp)
+                            .testTag("role_switcher_pill")
+                    ) {
+                        Text(
+                            text = "Role: ${uiState.currentRole.title}",
+                            style = MaterialTheme.typography.labelSmall,
+                            fontWeight = FontWeight.Bold,
+                            color = emergencyColors.blueLight
+                        )
+                    }
                 }
             }
+        }
+
+        // Official SurakshaSathi Brand Hero Banner
+        item {
+            SurakshaBrandBannerCard(
+                height = 115.dp
+            )
         }
 
         // Active Disaster Headline Banner
